@@ -31,3 +31,23 @@ It's a developer guide with best practices as I personally see. First I wanted t
 * Basic knowledge of software engineering, JavaScript and cloud concepts. We will not discuss terminology, but use technologies in this guide.
 * `node` and `npm` installed in your machine - https://nodejs.org/
 * Docker Desktop for running containers - https://www.docker.com/products/docker-desktop/
+
+## What are we going to build?
+
+A small backend webapp, with codeing, performance and security best practices. We will make a code that you can run on NodeJS and even on edge platforms, like Cloudflare Workers. This repository is just a bunch of snippets and notes about leverage the core concepts and deploy you software wordwide.
+
+## Part1: your software
+
+### Init
+
+### Hono
+
+### Run
+
+### Recommended upgrades
+
+## Part2: Dockerization for NodeJS
+
+## Part3: Run in the cloud
+
+## Part4: Run as edge function
