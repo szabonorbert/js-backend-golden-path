@@ -2,7 +2,7 @@
 
 Guide to make and run the ultimate backend on NodeJS or V8.
 
-![alt text](src/js-backend-on-steroids-diagram.png)
+![JS backend on steroids](src/js-backend-on-steroids-diagram.png)
 
 > [!CAUTION]
 > It's an unfinished developer guide, containing typo and other mistakes. Come back later.
@@ -64,6 +64,10 @@ Later if you realize that you need to do some heavy tasks, you can always make m
 
 **It's easy to go from edge to NodeJS.<br>
 It's hard to go from NodeJS to edge.**
+
+That's why you want to make a compatible codebase at it's heart, and you will need to modify just a few lines of code to go from one platform to another.
+
+![JS backend on steroids](src/js-backend-on-steroids-diagram.png)
 
 ## Requirements
 
