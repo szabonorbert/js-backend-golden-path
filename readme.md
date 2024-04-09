@@ -34,36 +34,42 @@ It's a developer guide with best practices as I personally see. First I wanted t
 
 You have to choose.
 
-* You can make a code that runs on a "traditional" servers. (It's not truly traditional and definiately not unscalable, because as you will see, you can deploy this in a container cluster, that you can scale that up as big as you want.)
-* Or you can make a code that runs on the edge, without thinking about servers: deploy all over the world immediately.
+* You can make a code that runs on a "traditional" servers. (Well we are talking about containers, so it's not truly traditional and definiately not unscalable, because you can scale that up as big as you want.)
+* Or you can make a code that runs on the edge, without thinking about servers: deploy your code all over the world immediately.
 
-There are cons and pros on both solution, but what should you choose? You don't know yet, and that is the problem you are facing with.
+There are cons and pros on both solution, but what should you choose at the beginning? Usually you don't know that yet, and this is the problem you are facing with.
 
 ### NodeJS and its problems
 
-If you are going to build something new, and you have big plans, people usally think it's better to choose the "traditional" way to make servers, and write codes that runs on for example NodeJS backend. Because you have full control of what's on the machines.
+If you are going to build something new (and you have bigger plans than a home experiment), you could think it's better to choose the "traditional" way and start making servers, write codes that runs on NodeJS for example. Because this way you have the full control of the machine, and you can decide all of the dependencies.
 
-But later when you get some visitors and decide to start to scale this up, you will get a bunch of new problems that you can not imagine in the beginning. Like geo-routing, load balancers, auto scaling, certificates, CI/CD, secret management, and the list is far-far from finished. 
+But later when you get some visitors and decide to start to scale this up, you will get a bunch of new problems that you can not imagine in the beginning. Geo-routing, load balancers, auto scaling, certificates, CI/CD, secret management, and this list is far-far away from the end. 
 
-You realize that it would be much better to run in the edge, and eliminate ALL of your scaling problems. But your code is not compatible, so you need to rewrite EVERYTHING.
+You realize that it would be much better to run in the edge, and eliminate ALL of your scaling problems. But your software is in production, your code is not compatible, and you need to rewrite almost everything, making a bunch of new services and expanded infrastructure.
 
-Nah.
+Nah. You know that you will stay with NodeJS.
 
-We know that you will stay with NodeJS.
+And that's the right moment to start crying and hire DevOps, or stay up on long nights to start solving your expansion problems.
 
 ### Edge and its problems
 
-On the other hand you can choose edge computing at the beginning, where you just upload you backend code, and scale globally and magically, faster than you read this sentence.
+On the other hand, you can choose edge computing at the beginning. Therefore you can just upload your simple backend code and immediately scale to the to whole globe magically from the first minute, faster than you can read this sentence.
 
 But later you realize you need some more control over your servers. For example you need the `ghostscript` lib to do something with the user-uploaded PDFs. Of course you can not install `ghostscript` on edge servers, so what should you do now?
 
-You realize that you should use a custom server with your full constrol of dependencies, but your code is made for the edge, and you main problem is not to rewrite everything, but building the whole scalable infrastructure and the lack of your DevOps knowledge.
+You realize that you should use a custom server with your full control of dependencies, but your code is made for the edge. Your main problem is not to only to rewrite everything, but building the whole scalable infrastructure, thinking about servers again in global scaling context, and the lack of your up-to-date DevOps knowledge. Yes, you can start crying now.
 
-### Solution
+### The solution
 
-The best thing you can do is to make your project as compatible as possible with both the two ways, and you can change your mind later. **Write your backend code thinking about edge first, because it's faster, easier and cheaper.** (Cheap means free for small projects, and much cheaper on scaling projects.) And you can really just focus on developing your great application.
+So what is the right path for you application?
 
-Later if you realize that you need to do some heavy tasks, you can always make microservices, as small containers to do the job with the custom installed libs (like `ghostscript`). Also if you are fearing of some latter big trouble, like something you did not calculate with (for example extraoridany pricing), you can always switch back to NodeJS immediately.
+There are a lot of business decisions that influates the final choice, but at the beginning, you just simply don't know what will happen a year later.
+
+**The best thing you can do is to make your project as compatible as possible with both of the two ways, therefore you can change your mind later. Just start on edge, because it's faster, easier and cheaper, then you will see the rest.**
+
+(Cheap means free for small projects, and much cheaper on scaling projects.)
+
+If you start on edge and later you realize that you need to do some heavy tasks, you can always make microservices, as small containers to do the job with the custom installed libs (like `ghostscript`). Also if you are fearing of some latter big trouble, like something you did not calculate with (for example extraoridany pricing), you can always switch back to NodeJS immediately.
 
 **It's easy to go from edge to NodeJS.<br>
 It's hard to go from NodeJS to edge.**
@@ -71,6 +77,12 @@ It's hard to go from NodeJS to edge.**
 ![JS backend on steroids](src/js-backend-golden-path-2.png)
 
 That's why you want to make the most compatible codebase at it's heart, therefore you will need to modify just a few lines of code to go from one platform to another. This is the golden path.
+
+Probably at the end you will arrive to the following mix:
+- your API backends and small-task microservices will stay on edge at global scale (important to work fast and globally)
+- your heavy-load tasks will go to containerized microservices (not improtant to work fast and globally)
+
+...but anyways, you never want to lock-in. You want the golden path to move immediately if you need.
 
 ### CJS, ESM and compatibility issues
 
