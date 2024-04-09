@@ -2,25 +2,32 @@
 
 Guide to make and run the ultimate backend on NodeJS or V8.
 
+![alt text](src/js-backend-on-steroids-diagram.png)
+
 > [!CAUTION]
 > It's an unfinished developer guide, containing typo and other mistakes. Come back later.
 
 ## Goals
 
-* You want a server for your microproject, or your proof-on-concept app.
+* You want a server for your microproject, or your proof-of-concept app.
 * You want to make it simple.
-* You want a small learning time, and also want to ship the product fast.
+* You want a short learning curve to ship your first version fast.
 * You want to test offline.
-* You want to go online fast...
-* ...without a lot of configurations.
-* It's a small project at start, but you want the possibility to scale up to serve the whole world...
-* ...without thinking about refactoring, load balancers, servers, encryption, or anything else
-* YOU. JUST. WANT. CODE.
-* Oh and you want all of it free.
+* You want to go online immediately...
+* ...without a lot of configurations headache.
+* It's a small project at start...
+* ...but you want the possibility to scale up to serve the whole world...
+* ...without thinking about rewriting anything in the code, and...
+* ... without thinking about infrastructure, like load balancers, servers, encryption, etc.
+* YOU. JUST. WANT. TO. CODE.
+* NOW.
+* Oh yes, and did I mention you want it all for free? At least until you reach a significant userbase.
 
-ARE YOU NUTS?
+ARE YOU NUTS?!
 
-No, you are not. It's all possible. Welcome to this tutorial.
+No, you are not.<br>
+This is the dream of all developers, and it's all possible.<br>
+Welcome to this tutorial.
 
 ## What is this?
 
@@ -57,7 +64,7 @@ In the empty root, make a folder called `app`. In terminal, go to this folder, t
 
 ### package.json
 
-Check out the scripts part. Modify to this:
+Modify to this:
 
 ```
 ...
@@ -73,7 +80,7 @@ Check out the scripts part. Modify to this:
 
 * We made a new entrypoint: `app.js`.
 * We use `node` for running in live, and `nodemon` for development purposes. Nodemon will restart the server automatically if you change a file.
-* `"type": "module"` is required for use the module syntax. You could do otherwise, but it's recommended since we want to ship our app with not just NodeJS but later as an edge function with just minimum modifications. Without this setting you will get the 'Cannot use import statement outside a module' later. More info [here](https://www.dhiwise.com/post/fix-the-error-cannot-use-import-statement-outside-a-module).
+* `"type": "module"` is required for use the module syntax. You could do otherwise, but it's recommended since we want to ship our app with not just NodeJS but later as an edge function with just minimum modifications. Without this setting you will get the 'Cannot use import statement outside a module' later. More info [here](https://www.dhiwise.com/post/fix-the-error-cannot-use-import-statement-outside-a-module) and [here](https://adamcoster.com/blog/commonjs-and-esm-importexport-compatibility-examples)
 
 ### Hono
 
@@ -119,6 +126,8 @@ pn dev
 Yay!
 
 ### Recommended upgrades
+
+#### Helmet
 
 ## Part2: Dockerization
 
