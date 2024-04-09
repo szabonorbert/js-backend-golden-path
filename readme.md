@@ -44,11 +44,17 @@ There are cons and pros on both solution, but what should you choose?
 
 **You don't know yet, and that is the problem you are facing with.**
 
+#### NodeJS and its problems
+
 If you are going to build something new, and you have big plans, people usally think it's better to choose the "traditional" way to make servers, and write codes that runs on for example NodeJS backend. Because you have full control of what's on the machines.
 
 But later when you get some visitors and decide to start to scale this up, you will get a bunch of new problems that you can not imagine in the beginning. Like geo-routing, load balancers, auto scaling, certificates, CI/CD, secret management, and the list is far-far from finished. 
 
-You realize that it would be much better to run in the edge, and eliminate ALL of your scaling problems. But your code is not compatible, so you need to rewrite EVERYTHING. Nah. You will stay in NodeJS.
+You realize that it would be much better to run in the edge, and eliminate ALL of your scaling problems. But your code is not compatible, so you need to rewrite EVERYTHING.
+
+Nah. You will stay with NodeJS.
+
+#### Edge and its problems
 
 On the other hand you can choose edge computing at the beginning, where you just upload you backend code, and scale globally and magically, faster than you read this sentence.
 
