@@ -2,7 +2,7 @@
 
 Guide to make and run the ultimate backend on NodeJS or V8.
 
-![JS backend on steroids](src/js-backend-on-steroids-diagram.png)
+![JS backend on steroids](src/js-backend-golden-path.png)
 
 > [!CAUTION]
 > It's an unfinished developer guide, containing typo and other mistakes. Come back later.
@@ -47,7 +47,9 @@ But later when you get some visitors and decide to start to scale this up, you w
 
 You realize that it would be much better to run in the edge, and eliminate ALL of your scaling problems. But your code is not compatible, so you need to rewrite EVERYTHING.
 
-Nah. You will stay with NodeJS.
+Nah.
+
+We know that you will stay with NodeJS.
 
 ### Edge and its problems
 
@@ -61,14 +63,14 @@ You realize that you should use a custom server with your full constrol of depen
 
 The best thing you can do is to make your project as compatible as possible with both the two ways, and you can change your mind later. **Write your backend code thinking about edge first, because it's faster, easier and cheaper.** (Cheap means free for small projects, and much cheaper on scaling projects.) And you can really just focus on developing your great application.
 
-Later if you realize that you need to do some heavy tasks, you can always make microservices, as small containers to do the job with the custom installed libs (like `ghostscript`). Also if you are fearing of some latter big trouble, like something you did not calculate with (for example extraoridany price), you can always switch back to NodeJS immediately.
+Later if you realize that you need to do some heavy tasks, you can always make microservices, as small containers to do the job with the custom installed libs (like `ghostscript`). Also if you are fearing of some latter big trouble, like something you did not calculate with (for example extraoridany pricing), you can always switch back to NodeJS immediately.
 
 **It's easy to go from edge to NodeJS.<br>
 It's hard to go from NodeJS to edge.**
 
-![JS backend on steroids](src/js-backend-on-steroids-diagram-2.png)
+![JS backend on steroids](src/js-backend-golden-path-2.png)
 
-That's why you want to make the most compatible codebase at it's heart, therefore you will need to modify just a few lines of code to go from one platform to another.
+That's why you want to make the most compatible codebase at it's heart, therefore you will need to modify just a few lines of code to go from one platform to another. This is the golden path.
 
 ### CJS, ESM and compatibility issues
 
