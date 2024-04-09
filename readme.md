@@ -26,14 +26,11 @@ Guide to make and run the ultimate backend on NodeJS or V8.
 **ARE YOU NUTS?!**
 
 No, you are not.<br>
-This is the dream of the developer, and yes, it's all possible.<br>
-Welcome to this tutorial.
+This is the dream of the developer, and yes, it's all possible.
 
-## What is this?
+It's a developer guide with best practices as I personally see. First I wanted to make a small step-by-step guide just for myself, but then I realized it can be a nice tutorial with some extra comments.
 
-It's a developer guide with best practices as I personally see. First I wanted to make a small step-by-step guide just for me, buit I realized I can do a nice tutorial if I add some more comments.
-
-### Two ways of deploying and the problem with migration
+## Two ways of deploying and the problem with migration
 
 You have to choose.
 
@@ -42,7 +39,7 @@ You have to choose.
 
 There are cons and pros on both solution, but what should you choose? You don't know yet, and that is the problem you are facing with.
 
-#### NodeJS and its problems
+### NodeJS and its problems
 
 If you are going to build something new, and you have big plans, people usally think it's better to choose the "traditional" way to make servers, and write codes that runs on for example NodeJS backend. Because you have full control of what's on the machines.
 
@@ -52,26 +49,65 @@ You realize that it would be much better to run in the edge, and eliminate ALL o
 
 Nah. You will stay with NodeJS.
 
-#### Edge and its problems
+### Edge and its problems
 
 On the other hand you can choose edge computing at the beginning, where you just upload you backend code, and scale globally and magically, faster than you read this sentence.
 
 But later you realize you need some more control over your servers. For example you need the `ghostscript` lib to do something with the user-uploaded PDFs. Of course you can not install `ghostscript` on edge servers, so what should you do now?
 
-You realize that you should use a custom server with your full constrol of dependencies, but your code is made for the edge, and you main problem is not to rewrite everything, but the infrastructure and the lack of your DevOps knowledge.
+You realize that you should use a custom server with your full constrol of dependencies, but your code is made for the edge, and you main problem is not to rewrite everything, but building the whole scalable infrastructure and the lack of your DevOps knowledge.
 
-### Recommended solution
+### Solution
 
-The best thing you can do is to make your project as compatible as possible with both the two ways, and you can change your mind later. **I recommend you to write your backend code thinking about edge first, because it's faster, easier and cheaper.** (Cheap means free for small projects, and much cheaper on scaling projects.) And you can really just focus on developing your great application.
+The best thing you can do is to make your project as compatible as possible with both the two ways, and you can change your mind later. **Write your backend code thinking about edge first, because it's faster, easier and cheaper.** (Cheap means free for small projects, and much cheaper on scaling projects.) And you can really just focus on developing your great application.
 
 Later if you realize that you need to do some heavy tasks, you can always make microservices, as small containers to do the job with the custom installed libs (like `ghostscript`). Also if you are fearing of some latter big trouble, like something you did not calculate with (for example extraoridany price), you can always switch back to NodeJS immediately.
 
 **It's easy to go from edge to NodeJS.<br>
 It's hard to go from NodeJS to edge.**
 
+![JS backend on steroids](src/js-backend-on-steroids-diagram-2.png)
+
 That's why you want to make the most compatible codebase at it's heart, therefore you will need to modify just a few lines of code to go from one platform to another.
 
-![JS backend on steroids](src/js-backend-on-steroids-diagram-2.png)
+### CJS, ESM and compatibility issues
+
+* CJS stands for CommonJS - think about the heart of NodeJS.
+* ESM stands for ECMAScript Module - think about the heart of your browser, and the heart of edge (because edge uses V8 which implements ECMAScript).
+
+When developing as CJS you normally import a CJS module like this:
+
+```
+const hogan = require('hogan.js')
+```
+
+When developing as ESM you normally import an ESM like this:
+```
+import { Hono } from 'hono'
+```
+
+Now read [this](https://adamcoster.com/blog/commonjs-and-esm-importexport-compatibility-examples). 
+
+TLDR;
+* You want to make your code as ESM, because edge works this way. And you can also run ESM in NodeJS. You don't need to change code.
+* You don't want to make your code as CJS, because just NodeJS can run it, edge can't. Also you can't import every ESM module into CJS.
+
+**So you will make ESM.**
+
+Importing an ESM into your ESM:
+```
+import { Hono } from 'hono'
+```
+CJS module import looks like this in its documentation:
+```
+const hogan = require('hogan.js')
+```
+...but you can easily import CJS into your ESM:
+```
+import hogan from 'hogan.js'
+```
+
+Note that I did not use curly braces, therefore you will get the default component that CJS exports.
 
 ## Requirements
 
