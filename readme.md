@@ -21,17 +21,49 @@ Guide to make and run the ultimate backend on NodeJS or V8.
 * ... without thinking about infrastructure, like load balancers, servers, encryption, etc.
 * YOU. JUST. WANT. TO. CODE.
 * NOW.
-* Oh yes, and did I mention you want it all for free? At least until you reach a significant userbase.
+* Oh, and you want it all for free. Or (in worst case) nearly free. At least until you reach a significant userbase.
 
-ARE YOU NUTS?!
+**ARE YOU NUTS?!**
 
 No, you are not.<br>
-This is the dream of all developers, and it's all possible.<br>
+This is the dream of the developer, and yes, it's all possible.<br>
 Welcome to this tutorial.
 
 ## What is this?
 
 It's a developer guide with best practices as I personally see. First I wanted to make a small step-by-step guide just for me, buit I realized I can do a nice tutorial if I add some more comments.
+
+### Two ways of deploying and the problem with migration
+
+You have to choose.
+
+* You can make a code that runs on a "traditional" servers. (It's not truly traditional and definiately not unscalable, because as you will see, you can deploy this in a container cluster, that you can scale that up as big as you want.)
+* Or you can make a code that runs on the edge, without thinking about servers: deploy all over the world immediately.
+
+There are cons and pros on both solution, but what should you choose?
+
+**You don't know yet, and that is the problem you are facing with.**
+
+If you are going to build something new, and you have big plans, people usally think it's better to choose the "traditional" way to make servers, and write codes that runs on for example NodeJS backend. Because you have full control of what's on the machines.
+
+But later when you get some visitors and decide to start to scale this up, you will get a bunch of new problems that you can not imagine in the beginning. Like geo-routing, load balancers, auto scaling, certificates, CI/CD, secret management, and the list is far-far from finished. 
+
+You realize that it would be much better to run in the edge, and eliminate ALL of your scaling problems. But your code is not compatible, so you need to rewrite EVERYTHING. Nah. You will stay in NodeJS.
+
+On the other hand you can choose edge computing at the beginning, where you just upload you backend code, and scale globally and magically, faster than you read this sentence.
+
+But later you realize you need some more control over your servers. For example you need the ghostscript lib to do something with the user-uploaded PDFs. Of course you can not install ghostscript on edge servers, so what should you do now?
+
+You realize that you should use a custom server with your full constrol of dependencies, but your code is made for the edge, and you need to rewrite everything.
+
+### Recommended solution
+
+The best thing you can do is to make your project as compatible as possible with both the two ways, and you can decide later. **I recommend you to write your backend code thinking about edge first, because it's faster, easier and cheaper.** (I mean it's free for small projects, and much cheaper on scaling projects.) And you can really just focus on developing your great application.
+
+Later if you realize that you need to do some heavy tasks, you can always make microservices, as small containers to do the job with the custom installed libs (like ghostscript). Also if you are fearing of latter some big trouble, of something you did not calculate with (like extraoridany price), you can always switch back to NodeJS immediately.
+
+**It's easy to go from edge to NodeJS.<br>
+It's hard to go from NodeJS to edge.**
 
 ## Requirements
 
@@ -41,7 +73,7 @@ It's a developer guide with best practices as I personally see. First I wanted t
 
 ## What are we going to build?
 
-A small backend webapp, with codeing, performance and security best practices. We will make a code that you can run on NodeJS and even on edge platforms, like Cloudflare Workers. This repository is just a bunch of snippets and notes about leverage the core concepts and deploy you software wordwide.
+A small backend webapp, with code structure, performance and security best practices. We will make a code that you can run on NodeJS and even on edge platforms, like Cloudflare Workers. This repository is just a bunch of snippets and notes about leverage the core concepts and deploy you software wordwide.
 
 ## Part0: get ready
 
@@ -130,6 +162,8 @@ Yay!
 #### Secure headers, logging, pretty json
 
 #### Template engine
+
+#### Code structure
 
 ## Part2: Run in the cloud as NodeJS
 
