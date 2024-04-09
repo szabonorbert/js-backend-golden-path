@@ -56,15 +56,15 @@ Nah. You will stay with NodeJS.
 
 On the other hand you can choose edge computing at the beginning, where you just upload you backend code, and scale globally and magically, faster than you read this sentence.
 
-But later you realize you need some more control over your servers. For example you need the ghostscript lib to do something with the user-uploaded PDFs. Of course you can not install ghostscript on edge servers, so what should you do now?
+But later you realize you need some more control over your servers. For example you need the `ghostscript` lib to do something with the user-uploaded PDFs. Of course you can not install `ghostscript` on edge servers, so what should you do now?
 
 You realize that you should use a custom server with your full constrol of dependencies, but your code is made for the edge, and you need to rewrite everything.
 
 ### Recommended solution
 
-The best thing you can do is to make your project as compatible as possible with both the two ways, and you can decide later. **I recommend you to write your backend code thinking about edge first, because it's faster, easier and cheaper.** (I mean it's free for small projects, and much cheaper on scaling projects.) And you can really just focus on developing your great application.
+The best thing you can do is to make your project as compatible as possible with both the two ways, and you can change your mind later. **I recommend you to write your backend code thinking about edge first, because it's faster, easier and cheaper.** (Cheap means free for small projects, and much cheaper on scaling projects.) And you can really just focus on developing your great application.
 
-Later if you realize that you need to do some heavy tasks, you can always make microservices, as small containers to do the job with the custom installed libs (like ghostscript). Also if you are fearing of latter some big trouble, of something you did not calculate with (like extraoridany price), you can always switch back to NodeJS immediately.
+Later if you realize that you need to do some heavy tasks, you can always make microservices, as small containers to do the job with the custom installed libs (like `ghostscript`). Also if you are fearing of some latter big trouble, like something you did not calculate with (for example extraoridany price), you can always switch back to NodeJS immediately.
 
 **It's easy to go from edge to NodeJS.<br>
 It's hard to go from NodeJS to edge.**
