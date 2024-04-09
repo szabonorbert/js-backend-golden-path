@@ -58,7 +58,7 @@ On the other hand you can choose edge computing at the beginning, where you just
 
 But later you realize you need some more control over your servers. For example you need the `ghostscript` lib to do something with the user-uploaded PDFs. Of course you can not install `ghostscript` on edge servers, so what should you do now?
 
-You realize that you should use a custom server with your full constrol of dependencies, but your code is made for the edge, and you need to rewrite everything.
+You realize that you should use a custom server with your full constrol of dependencies, but your code is made for the edge, and you main problem is not to rewrite everything, but the infrastructure and the lack of your DevOps knowledge.
 
 ### Recommended solution
 
