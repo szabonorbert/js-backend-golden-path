@@ -84,12 +84,12 @@ Modify to this:
 
 ### Hono
 
-[ExpressJS](https://expressjs.com/) is the most famous NodeJS framework. But we will not use that. I prefer [Hono](https://hono.dev/), because Hono is ultrafast, knows everything that ExpressJS knows, and compatible all of the JavaScript engines. ExpressJS is only compatible with NodeJS, but Hono has no other dependencies, so you can run Hono on NodeJS, Cloudflare Workers, Lambda@Edge, Bun, Fastly and so on.
+[ExpressJS](https://expressjs.com/) is the most famous NodeJS framework, however, we will use [Hono](https://hono.dev/). Hono is ultrafast, can do everything that ExpressJS does, and compatible all of the JavaScript runtimes (NodeJS, Cloudflare Workers, Lambda@Edge, Bun, Fastly and their friends). On the contrary, ExpressJS is only compatible with NodeJS.
 
-In the `app` folder type:
+It's true that Hono wasn't built for NodeJS originally, but we can make it work easily, therefore we can leverage this possibility to not rewrite our whole codebase if we decide to change our backend environment from NodeJS to the edge. We need an extra lib for NodeJS besides Hono, so in the `app` folder type:
 
 ```
-pn install hono @hono/node-server
+pn i hono @hono/node-server
 ```
 
 This will make the `package.json`, `pnpm-lock.yaml`, and the `node_modules` folder.
@@ -127,10 +127,18 @@ Yay!
 
 ### Recommended upgrades
 
-#### Helmet
+#### Secure headers, logging, pretty json
 
-## Part2: Dockerization
+#### Template engine
 
-## Part3: Run in the cloud
+## Part2: Run in the cloud as NodeJS
 
-## Part4: Run as edge function
+### Dockerization
+
+### Dockerhub build
+
+### Digital Ocean deploy
+
+### Cloudflare, protection, https
+
+## Part3: Run in the cloud as an edge function
