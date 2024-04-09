@@ -40,9 +40,7 @@ You have to choose.
 * You can make a code that runs on a "traditional" servers. (It's not truly traditional and definiately not unscalable, because as you will see, you can deploy this in a container cluster, that you can scale that up as big as you want.)
 * Or you can make a code that runs on the edge, without thinking about servers: deploy all over the world immediately.
 
-There are cons and pros on both solution, but what should you choose?
-
-**You don't know yet, and that is the problem you are facing with.**
+There are cons and pros on both solution, but what should you choose? You don't know yet, and that is the problem you are facing with.
 
 #### NodeJS and its problems
 
