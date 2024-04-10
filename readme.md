@@ -1,8 +1,8 @@
-# JS backend on steroids
+# JS backend golden path
 
 Guide to make and run the ultimate backend on NodeJS or V8.
 
-![JS backend on steroids](src/js-backend-golden-path.png)
+![JS backend golden path is the intersect of NodeJS and edge code](src/js-backend-golden-path.png)
 
 > [!CAUTION]
 > It's an unfinished developer guide, containing typo and other mistakes. Come back later.
@@ -28,7 +28,15 @@ Guide to make and run the ultimate backend on NodeJS or V8.
 No, you are not.<br>
 This is the dream of the developer, and yes, it's all possible.
 
-It's a developer guide with best practices as I personally see. First I wanted to make a small step-by-step guide just for myself, but then I realized it can be a nice tutorial with some extra comments.
+## What are we going to build?
+
+A small backend webapp, with code structure, performance and security best practices. We'll make a code that you can run on NodeJS and even on edge platforms, like Cloudflare Workers. This repository is basically an article about how you should think about building a backend, then a step-by-step tutorial with a bunch of exact snippets and notes from first lines of code to deploy your application.
+
+## Requirements
+
+* Basic knowledge of software engineering, JavaScript and cloud concepts. We will not discuss terminology.
+* `node` and `npm` installed in your machine - https://nodejs.org/
+* Docker Desktop for running containers - https://www.docker.com/products/docker-desktop/
 
 ## Two ways of deploying and the problem with migration
 
@@ -41,48 +49,58 @@ There are cons and pros on both solution, but what should you choose at the begi
 
 ### NodeJS and its problems
 
-If you are going to build something new (and you have bigger plans than a home experiment), you could think it's better to choose the "traditional" way and start making servers, write codes that runs on NodeJS for example. Because this way you have the full control of the machine, and you can decide all of the dependencies.
+If you are going to build something new (and you have bigger plans than a home experiment), you could think it's better to choose the "traditional" way and start making servers, write codes that runs on NodeJS. Because this way you have the full control of the machine, and you can decide all of the dependencies.
 
-But later when you get some visitors and decide to start to scale this up, you will get a bunch of new problems that you can not imagine in the beginning. Geo-routing, load balancers, auto scaling, certificates, CI/CD, secret management, and this list is far-far away from the end. 
+But later when you start gaining users and decide to scale the things up, you will get a bunch of new problems that you can not imagine in the beginning. Georouting, load balancers, auto scaling, certificates, CI/CD, secret management, and this list is far-far away from the end. 
 
-You realize that it would be much better to run in the edge, and eliminate ALL of your scaling problems. But your software is in production, your code is not compatible, and you need to rewrite almost everything, making a bunch of new services and expanded infrastructure.
+You realize that it would be much better to run in the edge, forget infrastructure and eliminate ALL of your scaling problems. But your software is in production now, your code is far from edge-compatible, and you need to rewrite almost everything, also make a bunch of new microservices and a complicated, expanded infrastructure.
 
-Nah. You know that you will stay with NodeJS.
+Nah.
+
+We all know that you will stick with NodeJS if you start with NodeJS.
 
 And that's the right moment to start crying and hire DevOps, or stay up on long nights to start solving your expansion problems.
 
 ### Edge and its problems
 
-On the other hand, you can choose edge computing at the beginning. Therefore you can just upload your simple backend code and immediately scale to the to whole globe magically from the first minute, faster than you can read this sentence.
+On the other hand, you can choose edge computing at the beginning. Therefore you can just upload your backend code and immediately scale to the to whole globe magically from the first minute, faster than you can read this sentence.
 
 But later you realize you need some more control over your servers. For example you need the `ghostscript` lib to do something with the user-uploaded PDFs. Of course you can not install `ghostscript` on edge servers, so what should you do now?
 
-You realize that you should use a custom server with your full control of dependencies, but your code is made for the edge. Your main problem is not to only to rewrite everything, but building the whole scalable infrastructure, thinking about servers again in global scaling context, and the lack of your up-to-date DevOps knowledge. Yes, you can start crying now.
+You realize that you need a custom server with your full control of dependencies. But your code is made for the edge. Your main problem is not to only to rewrite your codebase, but step back 10, and build the whole scalable infrastructure. Start thinking about servers again in global scaling context with a working production software, and yes, this is the moment when you start crying.
 
 ### The solution
 
 So what is the right path for you application?
 
-There are a lot of business decisions that influates the final choice, but at the beginning, you just simply don't know what will happen a year later.
+There are a lot of business decisions that will influate the final choice, but at the beginning, you just simply don't know what will happen a year later.
 
-**The best thing you can do is to make your project as compatible as possible with both of the two ways, therefore you can change your mind later. Just start on edge, because it's faster, easier and cheaper, then you will see the rest.**
+**The best thing you can do at the beginning is to make your project as compatible as possible with both of the two ways, therefore you can change your mind later. That's the golden path.**
 
-(Cheap means free for small projects, and much cheaper on scaling projects.)
+If you start on NodeJS, you will probably immediately start to use dependecies you will not have on edge, for example the famous ExpressJS. If you start with ExpressJS, you are cursed to stay in NodeJS.
 
-If you start on edge and later you realize that you need to do some heavy tasks, you can always make microservices, as small containers to do the job with the custom installed libs (like `ghostscript`). Also if you are fearing of some latter big trouble, like something you did not calculate with (for example extraoridany pricing), you can always switch back to NodeJS immediately.
+It's much smarter to do the opposite.
+
+**Start on edge, then you will see the rest.** Edge is faster, easier, scalable and cheaper. Cheap means free for small projects, and much cheaper on scaling projects.
+
+Don't afraid. If you start on edge and later you realize that you need to do some heavy tasks, you can always make microservices, as small containers to do the job with the custom installed libs (like `ghostscript`). Also if you are fearing of some latter big troubles, like something you did not calculate with (for example unexpected huge expenses), you can always switch back to NodeJS immediately.
 
 **It's easy to go from edge to NodeJS.<br>
 It's hard to go from NodeJS to edge.**
 
-![JS backend on steroids](src/js-backend-golden-path-2.png)
+![It's easier to go from edge to NodeJS](src/js-backend-golden-path-2.png)
 
-That's why you want to make the most compatible codebase at it's heart, therefore you will need to modify just a few lines of code to go from one platform to another. This is the golden path.
+NodeJS is JavaScript, edge is also JavaScript, but edge has lower possibilities of dependencies. The digram above would be more accurate like this:
 
-Probably at the end you will arrive to the following mix:
-- your API backends and small-task microservices will stay on edge at global scale (important to work fast and globally)
-- your heavy-load tasks will go to containerized microservices (not improtant to work fast and globally)
+![Code that runs on edge is JS backend golden path](src/js-backend-golden-path-3.png)
 
-...but anyways, you never want to lock-in. You want the golden path to move immediately if you need.
+Probably at the end you will arrive to the following:
+- your API backends and small-task microservices will stay on edge (API backends need react fast to your frontend calls and also need to be avaliable on global scale)
+- your heavy-loaded tasks will go to containerized microservices (not improtant to react fast and don't need global distribution)
+
+Either way, you definiately don't want vendor lock-in. You need a code that can be moved to the left or right path immediately, across vendors. Or from another point of view, you need an edge code that can easily containerized later.
+
+That's the golden path.
 
 ### CJS, ESM and compatibility issues
 
@@ -122,16 +140,6 @@ import hogan from 'hogan.js'
 ```
 
 Note that I did not use curly braces, therefore you will get the default component that CJS exports.
-
-## Requirements
-
-* Basic knowledge of software engineering, JavaScript and cloud concepts. We will not discuss terminology, but use technologies in this guide.
-* `node` and `npm` installed in your machine - https://nodejs.org/
-* Docker Desktop for running containers - https://www.docker.com/products/docker-desktop/
-
-## What are we going to build?
-
-A small backend webapp, with code structure, performance and security best practices. We will make a code that you can run on NodeJS and even on edge platforms, like Cloudflare Workers. This repository is just a bunch of snippets and notes about leverage the core concepts and deploy you software wordwide.
 
 ## Part0: get ready
 
